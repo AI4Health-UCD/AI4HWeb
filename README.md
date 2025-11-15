@@ -1,31 +1,16 @@
-# UC Davis AI for Health Website
+# AI for Health Center
 
-This repository contains the static website for the UC Davis AI for Health initiative. It is built with plain HTML, CSS, and JavaScript and is designed to highlight the program's mission, research focus areas, people, events, and opportunities for engagement.
+The UC Davis AI for Health Research Center is a cross-college hub jointly anchored in the Department of Computer Science College of Engineering (CoE)) and the Department of Radiology (School of Medicine (SOM)). The Center's purpose is to catalyze research, education, translation, and responsible innovation in artificial intelligence (AI) for health. Specific goals are to:
 
-## Getting Started
+- Serve the needs of its constitutive departments and UC Davis broadly.
 
-1. Clone this repository:
-   ```bash
-   git clone <repository-url>
-   cd AI-for-Health-Website
-   ```
-2. Open `index.html` in your preferred browser to view the site locally. No build step or server is required, though using a lightweight static server (such as `python -m http.server`) can help when developing locally.
+- Build a community around AI for Health through durable bridges between engineering and medicine for funding, research and education.
 
-## Project Structure
+- Establish shared resources for research and education, e.g., datasets, compute environments, and models.
 
-- `index.html` – Main landing page containing the full site content and styles.
-- `img/` – Directory reserved for site imagery. Add your graphics, logos, or photography to this folder and reference them from `index.html` or future pages.
+- Provide a welcoming, intellectually vibrant home for graduate students and trainees.
 
-## Adding Images
+- Convene seminars, meetups, and visiting talks to grow a cohesive community.
 
-Place any images in the `img/` directory. The folder currently contains a placeholder `.gitkeep` file so that it remains in version control; feel free to remove the placeholder once real assets are added.
+- Establish and disseminate best practices for data access, analytics, and reproducible workflows across campus.
 
-## Contributing
-
-When updating the site:
-
-- Keep the design consistent with UC Davis branding (blue and gold palette).
-- Test the layout at multiple viewport sizes to preserve responsive behavior.
-- Ensure that any new assets placed in `img/` are optimized for the web.
-
-Feel free to open issues or submit pull requests with improvements, bug fixes, or content updates.
