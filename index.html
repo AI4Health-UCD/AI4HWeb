@@ -1005,10 +1005,29 @@
 
         <div class="card">
           <h3>Models</h3>
-          <p>
-            This is where you will find models created by the AI for Health Collab. Check back soon as we publish our
-            first releases.
-          </p>
+          <h3><span style="text-decoration: underline;">Open-Source Medical AI Models and Pre-Trained Networks</span></h3>
+<ul>
+    <li>
+        <p><strong>BioBERT (DMIS, 2019)</strong> &ndash; A <strong>biomedical NLP transformer model</strong> (BERT-base architecture) pre-trained on millions of biomedical texts (PubMed articles). It is openly available and can be fine-tuned for tasks like extracting clinical concepts or classifying biomedical documents (<a href="https://arxiv.org/abs/1901.08746#:~:text=training%20BERT%20on%20biomedical%20corpora,available%20at%20this%20https%20URL">[1901.08746] BioBERT: a pre-trained biomedical language representation model for biomedical text mining</a>). BioBERT has become a foundation for many healthcare NLP projects due to its strong performance on biomedical benchmarks and easy accessibility.</p>
+    </li>
+    <li>
+        <p><strong>BioGPT (Microsoft Research, 2022)</strong> &ndash; A <strong>generative Transformer model</strong> (GPT-type) tailored for biomedical text generation and mining. It was pre-trained on <strong>15M+ PubMed abstracts</strong> and specialized for biomedical language, enabling tasks like writing disease descriptions or predicting relations between biomedical entities (<a href="https://www.aging-us.com/article/205055/text#:~:text=the%20study%20was%20the%20BioGPT,of%20the%20model%20with%20subject">Biomedical generative pre-trained based transformer language model for age-related disease target discovery | Aging</a>). BioGPT is released openly (Hugging Face Hub and code on GitHub), allowing researchers to leverage its ability to produce human-like biomedical text for research (e.g. drafting clinical narratives or scientific hypotheses).</p>
+    </li>
+    <li>
+        <p><strong>COVID-Net (DarwinAI, 2020)</strong> &ndash; An open-source convolutional neural network for COVID-19 diagnosis from chest X-rays. The COVID-Net initiative released multiple CNN models (e.g. COVID-Net CXR) along with the curated <strong>COVIDx</strong> dataset of chest X-rays from around the world. These models were provided as <strong>reference implementations for researchers</strong> to build on (<a href="https://github.com/lindawangg/COVID-Net#:~:text=COVID">GitHub - lindawangg/COVID-Net: COVID-Net Open Source Initiative</a>). COVID-Net demonstrated how the community could rapidly develop and share a medical AI model during an emerging public health crisis. <em>(Note: COVID-Net is for research use only, not a production diagnostic; the authors include disclaimers about clinical use (<a href="https://github.com/lindawangg/COVID-Net#:~:text=COVID">GitHub - lindawangg/COVID-Net: COVID-Net Open Source Initiative</a>).)</em></p>
+    </li>
+    <li>
+        <p><strong>AlphaFold2 by DeepMind (2021)</strong> &ndash; The <strong>AlphaFold</strong> protein structure prediction model (discussed above) was <strong>open-sourced</strong> by DeepMind and its code is available on GitHub. Moreover, DeepMind and collaborators have published the <strong>AlphaFold Protein Structure Database</strong>, providing predicted structures for over 200 million proteins (including all human proteins) freely to the public. This open release has enabled countless researchers in biology and medicine to utilize accurate protein models for tasks like drug target identification, enzyme engineering, and understanding disease mutations, without needing to run the model themselves (<a href="https://laskerfoundation.org/winners/alphafold-a-technology-for-predicting-protein-structures/#:~:text=In%20July%202021%2C%20Hassabis%20and,7000%20papers%20from%20top%20journals">AlphaFold&mdash;for predicting protein structures - Lasker Foundation</a>).</p>
+    </li>
+    <li>
+        <p><strong>TorchXRayVision Models (UCSF/Stanford, 2020)</strong> &ndash; TorchXRayVision is a library that comes with <strong>pre-trained models for chest X-ray analysis</strong> (trained on large public datasets) (<a href="https://github.com/mlmed/torchxrayvision#:~:text=TorchXRayVision%3A%20A%20library%20of%20chest,datasets%20and%20deep%20learning%20models">TorchXRayVision: A library of chest X-ray datasets and models ...</a>). For example, it includes models that can detect pneumonia, pleural effusions, heart enlargement, etc., on frontal chest X-rays out-of-the-box. These models are open-source (PyTorch-based) and allow researchers and clinicians to apply deep learning to imaging data without training from scratch.</p>
+    </li>
+    <li>
+        <p><strong>Pre-trained Medical Segmenters (nnU-Net, 2021)</strong> &ndash; The <strong>nnU-Net</strong> framework (by DKFZ) not only is an open tool (see below), but the authors also released pre-trained weights for certain medical segmentation tasks (e.g., tumor segmentation on CT/MRI). For instance, there are open nnU-Net models for <strong>automated segmentation of lung tumors on PET/CT</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11399280/#:~:text=Development%20and%20evaluation%20of%20two,the%20optimal%20integration%20of">Development and evaluation of two open-source nnU-Net models ...</a>) and other organs, which researchers can directly use or fine-tune. These pre-trained models serve as strong baselines and can accelerate medical imaging projects by providing state-of-the-art performance without requiring a large training dataset.</p>
+    </li>
+</ul>
+<p><em>(Many other models are available on platforms like the Hugging Face Hub under the &ldquo;Healthcare&rdquo; or &ldquo;Biomedical&rdquo; tags &ndash; including <strong>ClinicalBERT</strong> (pre-trained on clinical notes), <strong>Radiology BERT (BioRadBERT)</strong>, <strong>SEGMENT-A-Anything Model (Meta AI, 2023)</strong> applicable to medical images, and <strong>various disease-specific models</strong> shared by academic groups. Open model zoos like NVIDIA&rsquo;s MONAI Model Zoo also host ready-to-use medical AI models.)</em></p>
+          
         </div>
       </div>
     </div>
