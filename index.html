@@ -891,6 +891,122 @@
         font-size: 36px;
       }
     }
+    /* Accordion */
+    .accordion-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      background: white;
+      border: none;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s ease;
+      gap: 12px;
+    }
+
+    .accordion-trigger:hover {
+      background: #f8f9fb;
+    }
+
+    .accordion-trigger.open {
+      background: #f0f4f8;
+    }
+
+    .accordion-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      line-height: 1.4;
+    }
+
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--ucd-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      transition: transform 0.25s ease;
+      line-height: 1;
+    }
+
+    .accordion-trigger.open .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 0 20px 18px 20px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.75;
+      background: #f8f9fb;
+      border-top: 1px solid var(--border);
+    }
+
+    .accordion-body.open {
+      display: block;
+    }
+
+    .accordion-body p {
+      margin: 0;
+      padding-top: 14px;
+    }
+
+    .resource-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .resource-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      margin-bottom: 6px;
+    }
+
+    .resource-card-subtitle {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ucd-gold);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
     /* Project Cards */
     .project-list {
       display: flex;
@@ -1116,96 +1232,259 @@
         <div class="section-kicker">Resources</div>
         <h2 class="section-title">Datasets &amp; Models</h2>
         <p class="section-subtitle">
-          Explore the tools and assets we are assembling to accelerate responsible AI for health across UC Davis.
+          Explore the tools and assets we are assembling to accelerate responsible AI for health across UC Davis. Click any item to expand.
         </p>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3>Datasets</h3>
+      <div class="resources-grid">
 
-          <h3><span style="text-decoration: underline;">Public Healthcare Datasets (USA-Focused)</span></h3>
-<ul>
-    <li>
-        <p><strong>MIMIC-III &amp; MIMIC-IV (MIT/PhysioNet)</strong> &ndash; De-identified electronic health records (EHR) from critical care patients (ICU stays at Beth Israel Deaconess Medical Center). Includes demographics, vital signs, lab results, medications, etc., for tens of thousands of ICU admissions. <em>Access:</em> Free for research with data use agreement and training. MIMIC-IV (2008&ndash;2019) is the updated version of MIMIC-III.</p>
-    </li>
-    <li>
-        <p><strong>eICU Collaborative Research Database</strong> &ndash; Multi-center intensive care unit database from 208 hospitals across the US. Contains patient physiology, treatments, outcomes. Available via PhysioNet with similar access requirements.</p>
-    </li>
-    <li>
-        <p><strong>NIH Chest X-ray14 Database</strong> &ndash; A large public imaging dataset of <strong>112,000+ frontal chest X-rays</strong> from the NIH Clinical Center, annotated with 14 common thoracic pathology labels. Widely used for training and benchmarking medical image models.</p>
-    </li>
-    <li>
-        <p><strong>CheXpert Chest X-ray Dataset (Stanford)</strong> &ndash; A collection of <strong>224,316 chest radiographs</strong> from 65,240 patients, labeled for 14 observations via automated report analysis. A subset with radiology <strong>reports paired to images (CheXpert Plus)</strong> is also available. <em>Access:</em> Public for research use (hosted by Stanford AIMI).</p>
-    </li>
-    <li>
-        <p><strong>The Cancer Imaging Archive (TCIA)</strong> &ndash; An NIH-funded repository of medical imaging datasets, primarily cancer-related (CT, MRI, digital pathology, etc.). Many collections include expert annotations or lesion segmentations. <em>Access:</em> Open to public.</p>
-    </li>
-    <li>
-        <p><strong>The Cancer Genome Atlas (TCGA)</strong> &ndash; A landmark cancer genomics program that molecularly characterized <strong>~11,000</strong> tumors across 33 cancer types. It generated <strong>2.5 petabytes</strong> of genomic and clinical data, which are <strong>publicly available</strong> for research. <em>Access:</em> Through the NCI Genomic Data Commons.</p>
-    </li>
-    <li>
-        <p><strong>PhysioNet Signal Datasets</strong> &ndash; PhysioNet hosts a variety of physiological waveform datasets: e.g. ECG recordings (MIT-BIH Arrhythmia Database), EEG, wearable sensor data, etc. These support research in cardiovascular and neurological signal analysis.</p>
-    </li>
-    <li>
-        <p><strong>Clinical Text Datasets (i2b2/n2c2)</strong> &ndash; The i2b2 and n2c2 challenges have released de-identified clinical text corpora with annotations for NLP tasks. <em>Access:</em> Available to researchers via data use agreements.</p>
-    </li>
-</ul>
+        <!-- Datasets -->
+        <div class="resource-card">
+          <div class="resource-card-title">Datasets</div>
+          <div class="resource-card-subtitle">Public Healthcare Datasets (USA-Focused)</div>
+          <div class="accordion-group">
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">MIMIC-III &amp; MIMIC-IV (MIT/PhysioNet)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>De-identified electronic health records (EHR) from critical care patients (ICU stays at Beth Israel Deaconess Medical Center). Includes demographics, vital signs, lab results, medications, etc., for tens of thousands of ICU admissions. <em>Access:</em> Free for research with data use agreement and training. MIMIC-IV (2008–2019) is the updated version of MIMIC-III.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">eICU Collaborative Research Database</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Multi-center intensive care unit database from 208 hospitals across the US. Contains patient physiology, treatments, and outcomes. Available via PhysioNet with similar access requirements.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">NIH Chest X-ray14 Database</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A large public imaging dataset of <strong>112,000+ frontal chest X-rays</strong> from the NIH Clinical Center, annotated with 14 common thoracic pathology labels. Widely used for training and benchmarking medical image models.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">CheXpert Chest X-ray Dataset (Stanford)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A collection of <strong>224,316 chest radiographs</strong> from 65,240 patients, labeled for 14 observations via automated report analysis. A subset with radiology reports paired to images (CheXpert Plus) is also available. <em>Access:</em> Public for research use (hosted by Stanford AIMI).</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">The Cancer Imaging Archive (TCIA)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An NIH-funded repository of medical imaging datasets, primarily cancer-related (CT, MRI, digital pathology, etc.). Many collections include expert annotations or lesion segmentations. <em>Access:</em> Open to public.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">The Cancer Genome Atlas (TCGA)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A landmark cancer genomics program that molecularly characterized <strong>~11,000</strong> tumors across 33 cancer types. Generated <strong>2.5 petabytes</strong> of genomic and clinical data, publicly available for research. <em>Access:</em> Through the NCI Genomic Data Commons.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">PhysioNet Signal Datasets</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>PhysioNet hosts a variety of physiological waveform datasets: ECG recordings (MIT-BIH Arrhythmia Database), EEG, wearable sensor data, and more. These support research in cardiovascular and neurological signal analysis.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Clinical Text Datasets (i2b2/n2c2)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>The i2b2 and n2c2 challenges have released de-identified clinical text corpora with annotations for NLP tasks. <em>Access:</em> Available to researchers via data use agreements.</p>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div class="card">
-          <h3>Models</h3>
-          <h3><span style="text-decoration: underline;">Open-Source Medical AI Models and Pre-Trained Networks</span></h3>
-<ul>
-    <li>
-        <p><strong>BioBERT (DMIS, 2019)</strong> &ndash; A <strong>biomedical NLP transformer model</strong> pre-trained on millions of biomedical texts. It can be fine-tuned for tasks like extracting clinical concepts or classifying biomedical documents.</p>
-    </li>
-    <li>
-        <p><strong>BioGPT (Microsoft Research, 2022)</strong> &ndash; A <strong>generative Transformer model</strong> pre-trained on <strong>15M+ PubMed abstracts</strong> and specialized for biomedical language. Released openly on Hugging Face Hub.</p>
-    </li>
-    <li>
-        <p><strong>COVID-Net (DarwinAI, 2020)</strong> &ndash; An open-source convolutional neural network for COVID-19 diagnosis from chest X-rays. Released as a <strong>reference implementation for researchers</strong> to build on.</p>
-    </li>
-    <li>
-        <p><strong>AlphaFold2 by DeepMind (2021)</strong> &ndash; Open-sourced protein structure prediction model. The <strong>AlphaFold Protein Structure Database</strong> provides predicted structures for over 200 million proteins freely to the public.</p>
-    </li>
-    <li>
-        <p><strong>TorchXRayVision Models (UCSF/Stanford, 2020)</strong> &ndash; A library with <strong>pre-trained models for chest X-ray analysis</strong>. Open-source (PyTorch-based) and allows researchers to apply deep learning to imaging data without training from scratch.</p>
-    </li>
-    <li>
-        <p><strong>Pre-trained Medical Segmenters (nnU-Net, 2021)</strong> &ndash; The <strong>nnU-Net</strong> framework with pre-trained weights for certain medical segmentation tasks. Includes open models for <strong>automated segmentation of lung tumors on PET/CT</strong> and other organs.</p>
-    </li>
-</ul>
+        <!-- Models -->
+        <div class="resource-card">
+          <div class="resource-card-title">Models</div>
+          <div class="resource-card-subtitle">Open-Source Medical AI Models &amp; Pre-Trained Networks</div>
+          <div class="accordion-group">
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">BioBERT (DMIS, 2019)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A <strong>biomedical NLP transformer model</strong> pre-trained on millions of biomedical texts (PubMed articles). Can be fine-tuned for tasks like extracting clinical concepts or classifying biomedical documents.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">BioGPT (Microsoft Research, 2022)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A <strong>generative Transformer model</strong> pre-trained on <strong>15M+ PubMed abstracts</strong> and specialized for biomedical language. Released openly on Hugging Face Hub.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">COVID-Net (DarwinAI, 2020)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An open-source convolutional neural network for COVID-19 diagnosis from chest X-rays. Released as a <strong>reference implementation for researchers</strong> to build on. For research use only.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">AlphaFold2 (DeepMind, 2021)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Open-sourced protein structure prediction model. The <strong>AlphaFold Protein Structure Database</strong> provides predicted structures for over 200 million proteins freely to the public, enabling drug target identification and disease mutation analysis.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">TorchXRayVision (UCSF/Stanford, 2020)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A library with <strong>pre-trained models for chest X-ray analysis</strong> trained on large public datasets. Open-source (PyTorch-based), allowing researchers to apply deep learning to imaging data without training from scratch.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Pre-trained Medical Segmenters (nnU-Net, 2021)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>The <strong>nnU-Net</strong> framework with pre-trained weights for medical segmentation tasks. Includes open models for <strong>automated segmentation of lung tumors on PET/CT</strong> and other organs, serving as strong baselines for new imaging projects.</p>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div class="card">
-          <h3><span style="text-decoration: underline;">Open-Source Tools and Platforms for Medical AI</span></h3>
-<ul>
-    <li>
-        <p><strong>MONAI (Medical Open Network for AI)</strong> &ndash; A PyTorch-based open-source framework specifically designed for healthcare imaging AI. Provides domain-optimized functionality for reading medical images (DICOM, NIfTI), data augmentation, and deep learning model architectures.</p>
-    </li>
-    <li>
-        <p><strong>nnU-Net (Automatic Segmentation Pipeline)</strong> &ndash; An open-source self-configuring framework that automatically configures and trains a UNet-based neural network for any new segmentation dataset, winning numerous medical imaging challenges.</p>
-    </li>
-    <li>
-        <p><strong>Apache cTAKES (Clinical Text Analysis and Knowledge Extraction System)</strong> &ndash; A mature open-source NLP toolkit for <strong>clinical text</strong> developed by the Mayo Clinic. Can ingest clinical notes and identify medical concepts, mapping them to standardized vocabularies.</p>
-    </li>
-    <li>
-        <p><strong>MedSpaCy</strong> &ndash; An extension of the popular spaCy NLP library, offering clinical-specific components including section detection, contextual negation detection, and extraction of observations.</p>
-    </li>
-    <li>
-        <p><strong>PyHealth (UIUC/Sun Lab, 2021)</strong> &ndash; An open-source <strong>Python toolkit for developing predictive models on healthcare data</strong>. Implements over 30 predictive modeling algorithms under a unified API.</p>
-    </li>
-    <li>
-        <p><strong>Label Studio (Heartex)</strong> &ndash; A popular open-source <strong>data annotation tool</strong> that supports labeling of text, images, audio, etc. with a web-based interface. Useful for building custom annotation workflows for medical data.</p>
-    </li>
-    <li>
-        <p><strong>TensorFlow &amp; PyTorch</strong> &ndash; The two leading open-source deep learning frameworks, both extensively used in medical AI research. Both are free, have Python APIs, and support GPU acceleration.</p>
-    </li>
-    <li>
-        <p><strong>OHDSI Tools</strong> &ndash; OHDSI is an open science community that developed the OMOP common data model for patient records. They provide tools like <strong>Atlas</strong> for cohort identification and analysis on observational clinical data.</p>
-    </li>
-</ul>
+
+        <!-- Tools -->
+        <div class="resource-card">
+          <div class="resource-card-title">Tools &amp; Platforms</div>
+          <div class="resource-card-subtitle">Open-Source Tools for Medical AI</div>
+          <div class="accordion-group">
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">MONAI (Medical Open Network for AI)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A PyTorch-based open-source framework designed for healthcare imaging AI. Provides domain-optimized functionality for reading medical images (DICOM, NIfTI), data augmentation, and deep learning model architectures like UNet variants.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">nnU-Net (Automatic Segmentation Pipeline)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A self-configuring open-source framework that automatically configures and trains a UNet-based neural network for any new segmentation dataset. Won numerous medical imaging challenges and greatly democratizes medical image segmentation.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Apache cTAKES</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A mature open-source NLP toolkit for <strong>clinical text</strong> developed by the Mayo Clinic. Ingests clinical notes and identifies medical concepts like disorders, drugs, and symptoms, mapping them to standardized vocabularies.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">MedSpaCy</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An extension of the spaCy NLP library with clinical-specific components including section detection, contextual negation detection (NegEx), and extraction of clinical observations. Easier to use than cTAKES for Python developers.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">PyHealth (UIUC/Sun Lab, 2021)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An open-source <strong>Python toolkit for developing predictive models on healthcare data</strong>. Implements over 30 predictive modeling algorithms under a unified API, improving reproducibility across health AI projects.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Label Studio (Heartex)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A popular open-source <strong>data annotation tool</strong> supporting labeling of text, images, and audio via a web interface. Useful for building custom medical annotation workflows including radiology bounding boxes and clinical note labeling.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">TensorFlow &amp; PyTorch</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>The two leading open-source deep learning frameworks extensively used in medical AI research. Both are free, have Python APIs, and support GPU acceleration, lowering the barrier for implementing novel AI models on health data.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">OHDSI Tools</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>OHDSI is an open science community behind the OMOP common data model. Their tools like <strong>Atlas</strong> enable cohort identification and analysis on population-scale observational clinical data, facilitating standardized AI model development across institutions.</p>
+              </div>
+            </div>
+
+          </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -1775,6 +2054,24 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleAccordion(btn) {
+      const body = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+
+      // Close all siblings in the same group
+      const group = btn.closest('.accordion-group');
+      group.querySelectorAll('.accordion-trigger').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+      });
+
+      // Toggle clicked one open if it wasn't already
+      if (!isOpen) {
+        btn.classList.add('open');
+        body.classList.add('open');
+      }
+    }
   </script>
 </body>
 </html>
