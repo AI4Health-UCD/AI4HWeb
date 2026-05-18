@@ -1,8 +1,8 @@
-# AI for Health Collab (AI4HC)
+# CS Department AI for Health initiative (CS AI4H)
 
-The UC Davis AI for Health Collab (AI4HC) is a cross-college hub jointly anchored in the Department of Computer Science College of Engineering (CoE)) and the Department of Radiology (School of Medicine (SOM)). The Center's purpose is to catalyze research, education, translation, and responsible innovation in artificial intelligence (AI) for health. Specific goals are to:
+The UC Davis Computer Science Department AI for Health Initiative (CS AI4H) is a resource building effort intended to catalyze research, education, translation, and responsible innovation in artificial intelligence (AI) for health. Specific goals are to:
 
-- Serve the needs of its constitutive departments and UC Davis broadly.
+- Serve the needs of the CS Department and UC Davis broadly.
 
 - Build a community around AI for Health through durable bridges between engineering and medicine for funding, research and education.
 
