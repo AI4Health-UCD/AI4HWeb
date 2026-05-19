@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>UCD Computer Science AI for Health Initiative (CS AI4H)</title>
-  <link rel="icon" type="image/jpg" href="img/logo_ai4hi.jpg" />
+  <link rel="icon" type="image/png" href="img/logo_ai4hi.jpg" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
@@ -587,6 +587,9 @@
       color: var(--ucd-blue);
       font-weight: 700;
       margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--ucd-gold);
+      display: inline-block;
     }
 
     .people-list {
@@ -604,6 +607,12 @@
       border-radius: 10px;
       box-shadow: var(--shadow);
       align-items: flex-start;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    .person-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transform: translateX(4px);
     }
 
     .person-photo-wrapper {
@@ -626,6 +635,19 @@
       display: block;
     }
 
+    /* Placeholder avatar for people without photos */
+    .person-avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #c8d8e8, #a0b8d0);
+      font-size: 48px;
+      color: var(--ucd-blue);
+      font-weight: 700;
+    }
+
     .person-meta {
       flex: 1;
     }
@@ -640,14 +662,91 @@
     .person-role {
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--ucd-gold);
       margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .person-description {
       font-size: 15px;
       color: var(--text);
       line-height: 1.7;
+    }
+
+    /* Faculty grid for affiliated faculty/MDs */
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .faculty-card {
+      display: flex;
+      gap: 16px;
+      padding: 18px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      align-items: flex-start;
+    }
+
+    .faculty-photo-wrapper {
+      flex: 0 0 90px;
+      height: 100px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #c8d8e8, #a0b8d0);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .faculty-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .faculty-avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #c8d8e8, #a0b8d0);
+      font-size: 30px;
+      color: var(--ucd-blue);
+      font-weight: 700;
+    }
+
+    .faculty-meta {
+      flex: 1;
+    }
+
+    .faculty-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      margin-bottom: 4px;
+    }
+
+    .faculty-role {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ucd-gold);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .faculty-description {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
     }
 
     @media (max-width: 700px) {
@@ -660,6 +759,17 @@
         max-width: 220px;
         height: auto;
         aspect-ratio: 3 / 4;
+      }
+
+      .faculty-card {
+        flex-direction: column;
+      }
+
+      .faculty-photo-wrapper {
+        width: 100%;
+        max-width: 120px;
+        height: auto;
+        aspect-ratio: 1;
       }
     }
 
@@ -781,15 +891,178 @@
         font-size: 36px;
       }
     }
-
-    .people-disclaimer {
-      background: var(--bg-gray);
+    /* Accordion */
+    .accordion-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       border: 1px solid var(--border);
-      padding: 12px 16px;
       border-radius: 8px;
-      margin-bottom: 25px;
-      color: var(--text-muted);
+      overflow: hidden;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      background: white;
+      border: none;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s ease;
+      gap: 12px;
+    }
+
+    .accordion-trigger:hover {
+      background: #f8f9fb;
+    }
+
+    .accordion-trigger.open {
+      background: #f0f4f8;
+    }
+
+    .accordion-label {
       font-size: 15px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      line-height: 1.4;
+    }
+
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--ucd-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      transition: transform 0.25s ease;
+      line-height: 1;
+    }
+
+    .accordion-trigger.open .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 0 20px 18px 20px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.75;
+      background: #f8f9fb;
+      border-top: 1px solid var(--border);
+      animation: slideDown 0.22s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .accordion-body.open {
+      display: block;
+    }
+
+    .accordion-body p {
+      margin: 0;
+      padding-top: 14px;
+    }
+
+    .resource-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .resource-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      margin-bottom: 6px;
+    }
+
+    .resource-card-subtitle {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ucd-gold);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    /* Project Cards */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--ucd-gold);
+      border-radius: 8px;
+      padding: 30px 32px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transform: translateX(4px);
+    }
+
+    .project-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ucd-blue);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .project-lead {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ucd-gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .project-lead span {
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .project-description {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
     }
   </style>
 </head>
@@ -807,7 +1080,7 @@
   <nav class="main-nav">
     <div class="container nav-inner">
       <div class="site-brand">
-        <img src="img/logo_ai4hi.jpg" alt="AI for Health logo" width="500" " />
+        <img src="img/logo_ai4hi.jpg" alt="AI for Health logo" class="site-logo" />
         <div class="site-title">
           <h1></h1>
         </div>
@@ -817,6 +1090,7 @@
         <li><a href="#resources">Resources</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#people">Community</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -850,13 +1124,12 @@
   </ul>
         </p>
         <div class="hero-buttons">
-          <!-- <a href="#contact" class="btn btn-primary">Join Our Mailing List →</a> -->
           <a href="#research" class="btn btn-secondary">Explore Research</a>
         </div>
         <div class="hero-stats">
           <span><span class="stat-dot"></span> Campus-wide collaboration</span>
-          <span><span class="stat-dot"></span> Healthcare, engineering & data science</span>
-          <span><span class="stat-dot"></span> Centered on equity & ethics</span>
+          <span><span class="stat-dot"></span> Healthcare, engineering &amp; data science</span>
+          <span><span class="stat-dot"></span> Centered on equity &amp; ethics</span>
         </div>
       </div>
     </div>
@@ -868,12 +1141,12 @@
       <div class="stats-grid">
         <div class="stat-item">
           <div class="stat-number">15+</div>
-          <div class="stat-label">Clinical & Research Units</div>
+          <div class="stat-label">Clinical &amp; Research Units</div>
           <div class="stat-description">UC Davis Health, campus labs, and community partners</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">30+</div>
-          <div class="stat-label">Student & Trainee Projects</div>
+          <div class="stat-label">Student &amp; Trainee Projects</div>
           <div class="stat-description">Interdisciplinary projects at the AI–health interface</div>
         </div>
         <div class="stat-item">
@@ -890,19 +1163,19 @@
     <div class="container">
       <div class="audience-grid">
         <a href="#research" class="audience-card">
-          <h3>Patients & Communities</h3>
+          <h3>Patients &amp; Communities</h3>
           <p>Learn how AI projects are informed by real-world needs.</p>
         </a>
         <a href="#education" class="audience-card">
-          <h3>Students & Trainees</h3>
+          <h3>Students &amp; Trainees</h3>
           <p>Find courses, projects, and mentoring opportunities.</p>
         </a>
         <a href="#research" class="audience-card">
-          <h3>Clinicians & Staff</h3>
+          <h3>Clinicians &amp; Staff</h3>
           <p>Co-create AI tools that fit clinical workflows.</p>
         </a>
         <a href="#contact" class="audience-card">
-          <h3>Researchers & Partners</h3>
+          <h3>Researchers &amp; Partners</h3>
           <p>Collaborate on grants, studies, and deployments.</p>
         </a>
       </div>
@@ -944,11 +1217,11 @@
           <div class="pillar">
             <div class="pillar-title">Deep Collaboration</div>
             <div class="pillar-text">
-              Projects are co-developed by steakholders across the AI and Health domains, ensuring that AI aligns with real needs and constraints.
+              Projects are co-developed by stakeholders across the AI and Health domains, ensuring that AI aligns with real needs and constraints.
             </div>
           </div>
           <div class="pillar">
-            <div class="pillar-title">Education & Training</div>
+            <div class="pillar-title">Education &amp; Training</div>
             <div class="pillar-text">
               We support students and trainees through seminars, projects, and mentorship at the intersection of AI, medicine, and society.
             </div>
@@ -963,104 +1236,261 @@
     <div class="container">
       <div class="section-header">
         <div class="section-kicker">Resources</div>
-        <h2 class="section-title">Datasets & Models</h2>
+        <h2 class="section-title">Datasets &amp; Models</h2>
         <p class="section-subtitle">
-          Explore the tools and assets we are assembling to accelerate responsible AI for health across UC Davis.
+          Explore the tools and assets we are assembling to accelerate responsible AI for health across UC Davis. Click any item to expand.
         </p>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3>Datasets</h3>
+      <div class="resources-grid">
 
-          <h3><span style="text-decoration: underline;">Public Healthcare Datasets (USA-Focused)</span></h3>
-<ul>
-    <li>
-        <p><strong>MIMIC-III &amp; MIMIC-IV (MIT/PhysioNet)</strong> &ndash; De-identified electronic health records (EHR) from critical care patients (ICU stays at Beth Israel Deaconess Medical Center). Includes demographics, vital signs, lab results, medications, etc., for tens of thousands of ICU admissions (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=General%20EHR%2FICU%20Data">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>). <em>Access:</em> Free for research with data use agreement and training (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=General%20EHR%2FICU%20Data">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>). MIMIC-IV (2008&ndash;2019) is the updated version of MIMIC-III (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=1.%20MIMIC,resolution%20ICU%20data%20from%20Bern">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>).</p>
-    </li>
-    <li>
-        <p><strong>eICU Collaborative Research Database</strong> &ndash; Multi-center intensive care unit database from 208 hospitals across the US (another large ICU dataset). Contains patient physiology, treatments, outcomes. Available via PhysioNet with similar access requirements (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=2.%20MIMIC,IV%20Emergency">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>).</p>
-    </li>
-    <li>
-        <p><strong>NIH Chest X-ray14 Database</strong> &ndash; A large public imaging dataset of <strong>112,000+ frontal chest X-rays</strong> from the NIH Clinical Center, annotated with 14 common thoracic pathology labels (e.g. pneumonia, nodule, effusion) extracted from radiology reports (<a href="https://stanfordmlgroup.github.io/projects/chexnet/#:~:text=We%20train%20CheXNet%20on%20the,such%20a%20deep%20network%20tractable">CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning</a>) (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=Findings%20academictorrents,Developmental%20Human%20Connectome%20Project">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>). Widely used for training and benchmarking medical image models.</p>
-    </li>
-    <li>
-        <p><strong>CheXpert Chest X-ray Dataset (Stanford)</strong> &ndash; A collection of <strong>224,316 chest radiographs</strong> from 65,240 patients, labeled for 14 observations (like lung opacity, cardiomegaly) via automated report analysis (<a href="https://aimi.stanford.edu/shared-datasets#:~:text=CheXpert%3A%20Chest%20X">Shared Datasets | Center for Artificial Intelligence in Medicine &amp; Imaging</a>). Accompanied by a labeled validation and test set. Useful for developing diagnostic models; a subset with radiology <strong>reports paired to images (CheXpert Plus)</strong> is also available (<a href="https://aimi.stanford.edu/shared-datasets#:~:text=CheXpert%20PlusNotable%20for%20its%20organization,187%2C711%20studies%20from%2064%2C725%20patients">Shared Datasets | Center for Artificial Intelligence in Medicine &amp; Imaging</a>). <em>Access:</em> Public for research use (hosted by Stanford AIMI) (<a href="https://aimi.stanford.edu/shared-datasets#:~:text=Stanford%20AIMI%20shares%20annotated%20data,to%20advance%20AI%20in%20medicine">Shared Datasets | Center for Artificial Intelligence in Medicine &amp; Imaging</a>) (<a href="https://aimi.stanford.edu/shared-datasets#:~:text=CheXpert%20PlusThe%20CheXpert%20Plus%20dataset,187%2C711%20studies%20from%2064%2C725%20patients">Shared Datasets | Center for Artificial Intelligence in Medicine &amp; Imaging</a>).</p>
-    </li>
-    <li>
-        <p><strong>The Cancer Imaging Archive (TCIA)</strong> &ndash; An NIH-funded repository of medical imaging datasets, primarily cancer-related (CT, MRI, digital pathology, etc.). TCIA hosts dozens of open datasets, including lung CT scans (LUNA16 for nodule analysis), brain MRI (Brain Tumor Segmentation challenges), prostate MRI, etc. (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=Radiology%20%28X">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>) (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=9.%20NIH%20Chest%20X,MURA%20%28musculoskeletal%20radiographs%29">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>). Many collections include expert annotations or lesion segmentations. <em>Access:</em> Open to public (download from TCIA website).</p>
-    </li>
-    <li>
-        <p><strong>The Cancer Genome Atlas (TCGA)</strong> &ndash; A landmark cancer genomics program that molecularly characterized <strong>~11,000</strong> tumors across 33 cancer types (with matched normal tissues). It generated <strong>2.5 petabytes</strong> of genomic and clinical data (DNA/RNA sequencing, epigenetics, proteomics, etc.), which are <strong>publicly available</strong> for research (<a href="https://www.cancer.gov/ccg/research/genome-sequencing/tcga#:~:text=Over%20the%20next%20dozen%20years%2C,the%20research%20community%20to%20use">The Cancer Genome Atlas Program (TCGA) - NCI</a>). <em>Access:</em> Through the NCI Genomic Data Commons (with web portal and tools) (<a href="https://www.cancer.gov/ccg/research/genome-sequencing/tcga#:~:text=Over%20the%20next%20dozen%20years%2C,the%20research%20community%20to%20use">The Cancer Genome Atlas Program (TCGA) - NCI</a>). (Imaging data for many TCGA cases are also available via TCIA (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=and%20approval,associated%20with%20subjects%20from%20TCGA">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>).)</p>
-    </li>
-    <li>
-        <p><strong>PhysioNet Signal Datasets</strong> &ndash; PhysioNet hosts a variety of physiological waveform datasets: e.g. ECG recordings (MIT-BIH Arrhythmia Database), EEG, wearable sensor data, etc. These support research in cardiovascular and neurological signal analysis. (PhysioNet also hosts challenges and other clinical datasets beyond ICU, such as the <strong>PTB-XL ECG dataset</strong> (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=Waveform%20Data">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>) and waveform matched subsets of MIMIC (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=Waveform%20Data">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>).)</p>
-    </li>
-    <li>
-        <p><strong>Clinical Text Datasets (i2b2/n2c2)</strong> &ndash; The i2b2 and n2c2 challenges have released de-identified clinical text corpora with annotations for NLP tasks (e.g. de-identification, concept extraction, relations). For example, the <strong>MIMIC-IV-Note</strong> dataset provides de-identified ICU notes (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=Clinical%20Notes%2FText">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>), and the i2b2 2010&ndash;2012 sets include EMR notes annotated for problems, treatments, and tests (<a href="https://github.com/geniusrise/awesome-healthcare-datasets#:~:text=Clinical%20Notes%2FText">GitHub - geniusrise/awesome-healthcare-datasets: Healthcare and biomedical datasets, for AI/ML</a>). <em>Access:</em> Available to researchers via data use agreements (through PhysioNet or i2b2 data portal).</p>
-    </li>
-</ul>
-<p><em>(Many more open datasets exist. For instance, <strong>Ophthalmology</strong>: Stanford&rsquo;s EyePACS for diabetic retinopathy, <strong>Dermatology</strong>: Diverse Dermatology Images (skin lesion photos) (<a href="https://aimi.stanford.edu/shared-datasets#:~:text=DDI%20">Shared Datasets | Center for Artificial Intelligence in Medicine &amp; Imaging</a>), <strong>Neurology</strong>: Open Neuro (fMRI, EEG data) and Alzheimer&rsquo;s Disease Neuroimaging Initiative (ADNI), etc. Researchers can explore repositories like PhysioNet and Kaggle&rsquo;s open data portal for a wide range of public health data.)</em><em></em></p>          
+        <!-- Datasets -->
+        <div class="resource-card">
+          <div class="resource-card-title">Datasets</div>
+          <div class="resource-card-subtitle">Public Healthcare Datasets (USA-Focused)</div>
+          <div class="accordion-group">
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">MIMIC-III &amp; MIMIC-IV (MIT/PhysioNet)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>De-identified electronic health records (EHR) from critical care patients (ICU stays at Beth Israel Deaconess Medical Center). Includes demographics, vital signs, lab results, medications, etc., for tens of thousands of ICU admissions. <em>Access:</em> Free for research with data use agreement and training. MIMIC-IV (2008–2019) is the updated version of MIMIC-III.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">eICU Collaborative Research Database</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Multi-center intensive care unit database from 208 hospitals across the US. Contains patient physiology, treatments, and outcomes. Available via PhysioNet with similar access requirements.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">NIH Chest X-ray14 Database</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A large public imaging dataset of <strong>112,000+ frontal chest X-rays</strong> from the NIH Clinical Center, annotated with 14 common thoracic pathology labels. Widely used for training and benchmarking medical image models.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">CheXpert Chest X-ray Dataset (Stanford)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A collection of <strong>224,316 chest radiographs</strong> from 65,240 patients, labeled for 14 observations via automated report analysis. A subset with radiology reports paired to images (CheXpert Plus) is also available. <em>Access:</em> Public for research use (hosted by Stanford AIMI).</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">The Cancer Imaging Archive (TCIA)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An NIH-funded repository of medical imaging datasets, primarily cancer-related (CT, MRI, digital pathology, etc.). Many collections include expert annotations or lesion segmentations. <em>Access:</em> Open to public.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">The Cancer Genome Atlas (TCGA)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A landmark cancer genomics program that molecularly characterized <strong>~11,000</strong> tumors across 33 cancer types. Generated <strong>2.5 petabytes</strong> of genomic and clinical data, publicly available for research. <em>Access:</em> Through the NCI Genomic Data Commons.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">PhysioNet Signal Datasets</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>PhysioNet hosts a variety of physiological waveform datasets: ECG recordings (MIT-BIH Arrhythmia Database), EEG, wearable sensor data, and more. These support research in cardiovascular and neurological signal analysis.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Clinical Text Datasets (i2b2/n2c2)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>The i2b2 and n2c2 challenges have released de-identified clinical text corpora with annotations for NLP tasks. <em>Access:</em> Available to researchers via data use agreements.</p>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div class="card">
-          <h3>Models</h3>
-          <h3><span style="text-decoration: underline;">Open-Source Medical AI Models and Pre-Trained Networks</span></h3>
-<ul>
-    <li>
-        <p><strong>BioBERT (DMIS, 2019)</strong> &ndash; A <strong>biomedical NLP transformer model</strong> (BERT-base architecture) pre-trained on millions of biomedical texts (PubMed articles). It is openly available and can be fine-tuned for tasks like extracting clinical concepts or classifying biomedical documents (<a href="https://arxiv.org/abs/1901.08746#:~:text=training%20BERT%20on%20biomedical%20corpora,available%20at%20this%20https%20URL">[1901.08746] BioBERT: a pre-trained biomedical language representation model for biomedical text mining</a>). BioBERT has become a foundation for many healthcare NLP projects due to its strong performance on biomedical benchmarks and easy accessibility.</p>
-    </li>
-    <li>
-        <p><strong>BioGPT (Microsoft Research, 2022)</strong> &ndash; A <strong>generative Transformer model</strong> (GPT-type) tailored for biomedical text generation and mining. It was pre-trained on <strong>15M+ PubMed abstracts</strong> and specialized for biomedical language, enabling tasks like writing disease descriptions or predicting relations between biomedical entities (<a href="https://www.aging-us.com/article/205055/text#:~:text=the%20study%20was%20the%20BioGPT,of%20the%20model%20with%20subject">Biomedical generative pre-trained based transformer language model for age-related disease target discovery | Aging</a>). BioGPT is released openly (Hugging Face Hub and code on GitHub), allowing researchers to leverage its ability to produce human-like biomedical text for research (e.g. drafting clinical narratives or scientific hypotheses).</p>
-    </li>
-    <li>
-        <p><strong>COVID-Net (DarwinAI, 2020)</strong> &ndash; An open-source convolutional neural network for COVID-19 diagnosis from chest X-rays. The COVID-Net initiative released multiple CNN models (e.g. COVID-Net CXR) along with the curated <strong>COVIDx</strong> dataset of chest X-rays from around the world. These models were provided as <strong>reference implementations for researchers</strong> to build on (<a href="https://github.com/lindawangg/COVID-Net#:~:text=COVID">GitHub - lindawangg/COVID-Net: COVID-Net Open Source Initiative</a>). COVID-Net demonstrated how the community could rapidly develop and share a medical AI model during an emerging public health crisis. <em>(Note: COVID-Net is for research use only, not a production diagnostic; the authors include disclaimers about clinical use (<a href="https://github.com/lindawangg/COVID-Net#:~:text=COVID">GitHub - lindawangg/COVID-Net: COVID-Net Open Source Initiative</a>).)</em></p>
-    </li>
-    <li>
-        <p><strong>AlphaFold2 by DeepMind (2021)</strong> &ndash; The <strong>AlphaFold</strong> protein structure prediction model (discussed above) was <strong>open-sourced</strong> by DeepMind and its code is available on GitHub. Moreover, DeepMind and collaborators have published the <strong>AlphaFold Protein Structure Database</strong>, providing predicted structures for over 200 million proteins (including all human proteins) freely to the public. This open release has enabled countless researchers in biology and medicine to utilize accurate protein models for tasks like drug target identification, enzyme engineering, and understanding disease mutations, without needing to run the model themselves (<a href="https://laskerfoundation.org/winners/alphafold-a-technology-for-predicting-protein-structures/#:~:text=In%20July%202021%2C%20Hassabis%20and,7000%20papers%20from%20top%20journals">AlphaFold&mdash;for predicting protein structures - Lasker Foundation</a>).</p>
-    </li>
-    <li>
-        <p><strong>TorchXRayVision Models (UCSF/Stanford, 2020)</strong> &ndash; TorchXRayVision is a library that comes with <strong>pre-trained models for chest X-ray analysis</strong> (trained on large public datasets) (<a href="https://github.com/mlmed/torchxrayvision#:~:text=TorchXRayVision%3A%20A%20library%20of%20chest,datasets%20and%20deep%20learning%20models">TorchXRayVision: A library of chest X-ray datasets and models ...</a>). For example, it includes models that can detect pneumonia, pleural effusions, heart enlargement, etc., on frontal chest X-rays out-of-the-box. These models are open-source (PyTorch-based) and allow researchers and clinicians to apply deep learning to imaging data without training from scratch.</p>
-    </li>
-    <li>
-        <p><strong>Pre-trained Medical Segmenters (nnU-Net, 2021)</strong> &ndash; The <strong>nnU-Net</strong> framework (by DKFZ) not only is an open tool (see below), but the authors also released pre-trained weights for certain medical segmentation tasks (e.g., tumor segmentation on CT/MRI). For instance, there are open nnU-Net models for <strong>automated segmentation of lung tumors on PET/CT</strong> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11399280/#:~:text=Development%20and%20evaluation%20of%20two,the%20optimal%20integration%20of">Development and evaluation of two open-source nnU-Net models ...</a>) and other organs, which researchers can directly use or fine-tune. These pre-trained models serve as strong baselines and can accelerate medical imaging projects by providing state-of-the-art performance without requiring a large training dataset.</p>
-    </li>
-</ul>
-<p><em>(Many other models are available on platforms like the Hugging Face Hub under the &ldquo;Healthcare&rdquo; or &ldquo;Biomedical&rdquo; tags &ndash; including <strong>ClinicalBERT</strong> (pre-trained on clinical notes), <strong>Radiology BERT (BioRadBERT)</strong>, <strong>SEGMENT-A-Anything Model (Meta AI, 2023)</strong> applicable to medical images, and <strong>various disease-specific models</strong> shared by academic groups. Open model zoos like NVIDIA&rsquo;s MONAI Model Zoo also host ready-to-use medical AI models.)</em></p>
-          
+        <!-- Models -->
+        <div class="resource-card">
+          <div class="resource-card-title">Models</div>
+          <div class="resource-card-subtitle">Open-Source Medical AI Models &amp; Pre-Trained Networks</div>
+          <div class="accordion-group">
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">BioBERT (DMIS, 2019)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A <strong>biomedical NLP transformer model</strong> pre-trained on millions of biomedical texts (PubMed articles). Can be fine-tuned for tasks like extracting clinical concepts or classifying biomedical documents.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">BioGPT (Microsoft Research, 2022)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A <strong>generative Transformer model</strong> pre-trained on <strong>15M+ PubMed abstracts</strong> and specialized for biomedical language. Released openly on Hugging Face Hub.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">COVID-Net (DarwinAI, 2020)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An open-source convolutional neural network for COVID-19 diagnosis from chest X-rays. Released as a <strong>reference implementation for researchers</strong> to build on. For research use only.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">AlphaFold2 (DeepMind, 2021)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>Open-sourced protein structure prediction model. The <strong>AlphaFold Protein Structure Database</strong> provides predicted structures for over 200 million proteins freely to the public, enabling drug target identification and disease mutation analysis.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">TorchXRayVision (UCSF/Stanford, 2020)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A library with <strong>pre-trained models for chest X-ray analysis</strong> trained on large public datasets. Open-source (PyTorch-based), allowing researchers to apply deep learning to imaging data without training from scratch.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Pre-trained Medical Segmenters (nnU-Net, 2021)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>The <strong>nnU-Net</strong> framework with pre-trained weights for medical segmentation tasks. Includes open models for <strong>automated segmentation of lung tumors on PET/CT</strong> and other organs, serving as strong baselines for new imaging projects.</p>
+              </div>
+            </div>
+
+          </div>
         </div>
-           <div class="card">
-          <h3><span style="text-decoration: underline;">Open-Source Tools and Platforms for Medical AI</span></h3>
-<ul>
-    <li>
-        <p><strong>MONAI (Medical Open Network for AI)</strong> &ndash; A PyTorch-based open-source framework specifically designed for healthcare imaging AI (<a href="https://github.com/Project-MONAI/MONAI#:~:text=MONAI%20is%20a%20PyTorch,Its%20ambitions%20are%20as%20follows">GitHub - Project-MONAI/MONAI: AI Toolkit for Healthcare Imaging</a>). MONAI provides domain-optimized functionality for reading medical images (DICOM, NIfTI), data augmentation, deep learning model architectures (e.g. UNet variants), and evaluation metrics commonly used in radiology. It is developed with support from NVIDIA and has an active community. MONAI helps researchers rapidly prototype imaging models and ensures best practices (it even includes reference training pipelines for popular datasets).</p>
-    </li>
-    <li>
-        <p><strong>nnU-Net (Automatic Segmentation Pipeline)</strong> &ndash; An open-source tool that automatically configures and trains a UNet-based neural network for any new segmentation dataset (<a href="https://helmholtz.software/software/nnu-net#:~:text=nnU,around%20this%20differentiation%20of%20method">nnU-Net | Helmholtz Research Software Directory</a>). nnU-Net was a <strong>self-configuring framework</strong> that won numerous medical imaging challenges by removing the need to manually tune architecture or hyperparameters (<a href="https://helmholtz.software/software/nnu-net#:~:text=nnU,Methods%20paper%20to%20learn%20more">nnU-Net | Helmholtz Research Software Directory</a>). Researchers simply input their annotated images, and nnU-Net handles preprocessing, architecture selection (2D vs 3D), training, and postprocessing, yielding a high-performing model. This has greatly <strong>democratized medical image segmentation</strong>, allowing those with limited deep learning expertise to achieve state-of-the-art results out-of-the-box (<a href="https://helmholtz.software/software/nnu-net#:~:text=nnU,around%20this%20differentiation%20of%20method">nnU-Net | Helmholtz Research Software Directory</a>).</p>
-    </li>
-    <li>
-        <p><strong>Apache cTAKES (Clinical Text Analysis and Knowledge Extraction System)</strong> &ndash; A mature open-source NLP toolkit for <strong>clinical text</strong> developed by the Mayo Clinic and others, now an Apache project. cTAKES can ingest clinical notes (e.g. doctor&rsquo;s narrative reports) and identifies medical concepts like disorders, drugs, symptoms, anatomical sites, and procedures, mapping them to standardized vocabularies. It uses pipelines of NLP components (sentence splitters, named entity recognizers, etc.) and is designed to extract structured information from unstructured EHR text (<a href="https://apachecon.com/acah2020/tracks/ctakes.html#:~:text=Apache%20cTAKES%20,Due%20to%20having%20different">ApacheCon @Home - cTAKES Track</a>). cTAKES is often used for building cohort discovery tools, clinical decision support systems, or de-identification of notes.</p>
-    </li>
-    <li>
-        <p><strong>MedSpaCy</strong> &ndash; An extension of the popular spaCy NLP library, offering clinical-specific components (like section detection, contextual negation detection using algorithms like NegEx, and extraction of observations). It&rsquo;s open-source and easier to use than cTAKES for Python developers. For example, it can quickly enable a model to understand that &ldquo;no evidence of pneumonia&rdquo; in a report means pneumonia is negated. This lowers the barrier to doing NLP on medical text by leveraging spaCy&rsquo;s modern NLP capabilities.</p>
-    </li>
-    <li>
-        <p><strong>PyHealth (UIUC/Sun Lab, 2021)</strong> &ndash; An open-source <strong>Python toolkit for developing predictive models on healthcare data</strong> (<a href="https://arxiv.org/abs/2101.04209#:~:text=,datasets%20with%20fewer%20than%20ten">[2101.04209] PyHealth: A Python Library for Health Predictive Models</a>). It provides convenient modules for transforming common healthcare data types (EHR time-series, medical codes, images, signals) into machine-learning-ready formats (<a href="https://arxiv.org/abs/2101.04209#:~:text=Python%20toolbox%20for%20developing%20various,The%20predictive%20modeling%20module%20provides">[2101.04209] PyHealth: A Python Library for Health Predictive Models</a>), and implements over 30 predictive modeling algorithms (from gradient boosting machines to deep neural networks) under a unified API (<a href="https://arxiv.org/abs/2101.04209#:~:text=complex%20healthcare%20datasets%20such%20as,practices%20such%20as%20unit%20testing">[2101.04209] PyHealth: A Python Library for Health Predictive Models</a>). PyHealth&rsquo;s goal is to improve reproducibility and accelerate development in health AI by offering a standard, well-tested codebase for researchers and students.</p>
-    </li>
-    <li>
-        <p><strong>Label Studio (Heartex)</strong> &ndash; A popular open-source <strong>data annotation tool</strong> that supports labeling of text, images, audio, etc. with a web-based interface (<a href="https://github.com/HumanSignal/label-studio#:~:text=What%20is%20Label%20Studio%3F">GitHub - HumanSignal/label-studio: Label Studio is a multi-type data labeling and annotation tool with standardized output format</a>). In healthcare AI, Label Studio can be used to annotate medical images (for example, drawing bounding boxes or segmentations on radiographs or pathology slides) and to label text (highlight symptoms in clinical notes, etc.). It is free and extensible, making it useful for building custom annotation workflows for medical data. <em>Related:</em> <strong>ITK-SNAP</strong> (for 3D medical image annotation) is another open-source tool specifically for annotating volumes (useful in radiology for tumor segmentation).</p>
-    </li>
-    <li>
-        <p><strong>TensorFlow &amp; PyTorch</strong> &ndash; The two leading open-source deep learning frameworks, both of which are extensively used in medical AI research. <strong>TensorFlow</strong> (by Google) and <strong>PyTorch</strong> (by Facebook/Meta) provide the core libraries for designing neural networks and have large ecosystems of tutorials and extensions. Medical AI researchers often use these frameworks along with the specialized libraries above (e.g., MONAI is built on PyTorch (<a href="https://github.com/Project-MONAI/MONAI#:~:text=MONAI%20is%20a%20PyTorch,Its%20ambitions%20are%20as%20follows">GitHub - Project-MONAI/MONAI: AI Toolkit for Healthcare Imaging</a>)). Both frameworks are free, have Python APIs, and support GPU acceleration, which has lowered the barrier for researchers to implement novel AI models for health data.</p>
-    </li>
-    <li>
-        <p><strong>OHDSI Tools (Observational Health Data Sciences and Informatics)</strong> &ndash; OHDSI is an open science community that developed the OMOP common data model for patient records. They provide open-source software like <strong>Atlas</strong> (a web platform for cohort identification and analysis on observational clinical data) and <strong>APHRODITE</strong> (phenotyping algorithms). These tools are particularly useful for AI on <em>population-scale</em> healthcare data (e.g., claims or EHR databases), enabling standardized data extraction and outcome definition across institutions. Researchers in machine learning can use OHDSI&rsquo;s standardized datasets and tools to more easily apply algorithms and share models on real-world clinical data.</p>
-    </li>
-    <li>
-        <p><strong>DeID and Privacy Tools</strong> &ndash; There are also open utilities like <strong>MIST</strong> (MITRE&rsquo;s de-identification tool) and <strong>Philter</strong> (for de-identifying clinical notes) that help prepare health data for AI research by removing protected health information. While not &ldquo;AI&rdquo; tools themselves, they are crucial in creating sharable, HIPAA-compliant datasets for collaboration.</p>
-    </li>
-</ul>
-           </div>
+
+        <!-- Tools -->
+        <div class="resource-card">
+          <div class="resource-card-title">Tools &amp; Platforms</div>
+          <div class="resource-card-subtitle">Open-Source Tools for Medical AI</div>
+          <div class="accordion-group">
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">MONAI (Medical Open Network for AI)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A PyTorch-based open-source framework designed for healthcare imaging AI. Provides domain-optimized functionality for reading medical images (DICOM, NIfTI), data augmentation, and deep learning model architectures like UNet variants.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">nnU-Net (Automatic Segmentation Pipeline)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A self-configuring open-source framework that automatically configures and trains a UNet-based neural network for any new segmentation dataset. Won numerous medical imaging challenges and greatly democratizes medical image segmentation.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Apache cTAKES</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A mature open-source NLP toolkit for <strong>clinical text</strong> developed by the Mayo Clinic. Ingests clinical notes and identifies medical concepts like disorders, drugs, and symptoms, mapping them to standardized vocabularies.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">MedSpaCy</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An extension of the spaCy NLP library with clinical-specific components including section detection, contextual negation detection (NegEx), and extraction of clinical observations. Easier to use than cTAKES for Python developers.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">PyHealth (UIUC/Sun Lab, 2021)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>An open-source <strong>Python toolkit for developing predictive models on healthcare data</strong>. Implements over 30 predictive modeling algorithms under a unified API, improving reproducibility across health AI projects.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">Label Studio (Heartex)</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>A popular open-source <strong>data annotation tool</strong> supporting labeling of text, images, and audio via a web interface. Useful for building custom medical annotation workflows including radiology bounding boxes and clinical note labeling.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">TensorFlow &amp; PyTorch</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>The two leading open-source deep learning frameworks extensively used in medical AI research. Both are free, have Python APIs, and support GPU acceleration, lowering the barrier for implementing novel AI models on health data.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                <span class="accordion-label">OHDSI Tools</span>
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                <p>OHDSI is an open science community behind the OMOP common data model. Their tools like <strong>Atlas</strong> enable cohort identification and analysis on population-scale observational clinical data, facilitating standardized AI model development across institutions.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1078,15 +1508,15 @@
 
       <div class="grid-3">
         <div class="card">
-          <div class="research-tag">Clinical AI & Decision Support</div>
-          <h3>Predictive Modeling & Triage</h3>
+          <div class="research-tag">Clinical AI &amp; Decision Support</div>
+          <h3>Predictive Modeling &amp; Triage</h3>
           <p>
             Developing robust models using EHR, time series, and structured data for risk prediction, triage, and care planning, with an eye toward calibration and prospective evaluation.
           </p>
         </div>
 
         <div class="card">
-          <div class="research-tag">Imaging & Multimodal Learning</div>
+          <div class="research-tag">Imaging &amp; Multimodal Learning</div>
           <h3>From Pixels to Reports</h3>
           <p>
             Leveraging computer vision and multimodal architectures for radiology, pathology, and beyond, including tools that assist with interpretation, documentation, and follow-up.
@@ -1094,7 +1524,7 @@
         </div>
 
         <div class="card">
-          <div class="research-tag">Health Equity & Ethics</div>
+          <div class="research-tag">Health Equity &amp; Ethics</div>
           <h3>Equitable, Trustworthy AI</h3>
           <p>
             Studying bias, robustness, and governance in health AI systems and working with stakeholders to design interventions that promote fairness and accessibility.
@@ -1108,8 +1538,8 @@
   <section id="education">
     <div class="container">
       <div class="section-header">
-        <div class="section-kicker">Education & Training</div>
-        <h2 class="section-title">Opportunities for Students & Trainees</h2>
+        <div class="section-kicker">Education &amp; Training</div>
+        <h2 class="section-title">Opportunities for Students &amp; Trainees</h2>
         <p class="section-subtitle">
           Highlight courses, reading groups, fellowships, and project-based opportunities related to AI in healthcare.
         </p>
@@ -1117,7 +1547,7 @@
 
       <div class="grid-2">
         <div class="card">
-          <h3>Learning & Coursework</h3>
+          <h3>Learning &amp; Coursework</h3>
           <ul>
             <li>Seminars and workshops on AI in Health.</li>
             <li>Project-based courses connecting CS, statistics, and health.</li>
@@ -1137,11 +1567,94 @@
     </div>
   </section>
 
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">Projects</div>
+        <h2 class="section-title">Active Research Projects</h2>
+        <p class="section-subtitle">
+          Ongoing student and trainee projects at the intersection of AI and health, developed within the CS AI4H community. Click any project to expand.
+        </p>
+      </div>
+
+      <div class="accordion-group" style="border-radius: 10px; overflow: hidden;">
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">AngioVision: Multimodal AI for Angiographic Report Generation</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Nafiz Imtiaz Khan</span></strong></p>
+            <p>AngioVision is a multimodal deep learning pipeline that combines angiographic image sequences with clinical metadata to automatically generate structured radiology reports for interventional procedures. The system integrates a PooledCLIP architecture with temporal encoding and cross-attention mechanisms, enabling scalable, privacy-preserving report generation to support radiologists in high-volume vascular and interventional settings.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">RadAnnotate: Large Language Models for Efficient and Reliable Radiology Report Annotation</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Saisha Shetty</span></strong></p>
+            <p>RadAnnotate is an AI-driven framework for annotating radiology reports using large language models trained on limited clinical data. The project combines entity-specific models, synthetic data generation, and confidence-based selective automation to improve annotation reliability while reducing expert review effort in healthcare workflows.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">Mammo-Find: An LLM-based Multi-channel Tool for Recommending Public Mammogram Datasets</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Raiyan Jahangir</span></strong></p>
+            <p>Mammo-Find is an LLM- and RAG-based multichannel tool that helps researchers discover and compare public mammography datasets through both conversational text responses and visual knowledge-graph outputs. By aggregating information from 22 mammography datasets, the system recommends suitable datasets for downstream breast cancer AI tasks, reducing the time and effort required to identify appropriate data sources.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">MammoWise: Multi-Model Local RAG Pipeline for Mammography Report Generation</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Raiyan Jahangir</span></strong></p>
+            <p>MammoWise is a local, multi-model pipeline that uses open-source VLMs to generate structured mammography reports and perform related classification tasks, including BI-RADS, breast density, mass, calcification, and asymmetry prediction. The system unifies prompting, multimodal RAG, and QLoRA fine-tuning across datasets such as VinDr-Mammo and DMID, providing a reproducible and privacy-preserving framework for evaluating practical mammogram report generation workflows.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">AfibNet: A Multimodal Missingness-Aware Machine Learning Pipeline for Atrial Fibrillation Recurrence and Type Prediction</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Raiyan Jahangir</span></strong></p>
+            <p>AfibNet is a nested cross-validation pipeline that integrates clinical, electrogram (EGM), and metabolomic data modalities to predict post-ablation atrial fibrillation recurrence and AF type classification. By systematically evaluating combinations of imputation strategies, threshold-based feature selection, and 13 classifier architectures, with SHAP-driven interpretability, the system identifies robust biomarker signatures across single- and fused-data sources to support personalized AF ablation outcomes research.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">AI-Driven Real-Time Radioguided Imaging for Precision Cancer Surgery</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Sarika Dinesh</span></strong></p>
+            <p>This project focuses on developing an innovative radio-guided surgical probe for cancer detection by integrating artificial intelligence with advanced medical imaging techniques. The research aims to reconstruct real-time images of radiotracer distributions near the probe, enabling more accurate tumor localization and improving decision-making during surgical procedures.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- News & Events -->
   <section id="news">
     <div class="container">
       <div class="section-header">
-        <div class="section-kicker">News & Events</div>
+        <div class="section-kicker">News &amp; Events</div>
         <h2 class="section-title">Latest Updates from AI for Health</h2>
         <p class="section-subtitle">
           Replace these placeholders with news stories, announcements, and upcoming events for your initiative.
@@ -1179,7 +1692,7 @@
           <h3 style="font-size: 20px; margin-bottom: 20px; color: var(--ucd-blue);">Upcoming Events</h3>
           <ul class="event-list">
             <li class="event-item">
-              <div class="item-title">AI for Health Kickoff & Networking Session</div>
+              <div class="item-title">AI for Health Kickoff &amp; Networking Session</div>
               <div class="item-description">
                 Join faculty, trainees, and staff for lightning talks and informal networking around current and planned AI health projects.
               </div>
@@ -1205,189 +1718,299 @@
   </section>
 
   <!-- People Section -->
-   <section id="people">
-  <div class="container">
-    <div class="people-disclaimer">
-      This page will evolve as our community grows.
-    </div>
-    <div class="section-header">
-      <div class="section-kicker">People</div>
-      <h2 class="section-title">Our Community</h2>
-      <p class="section-subtitle">
-        Meet the faculty, postdoctoral researchers, and students of CS AI4H.
-      </p>
-    </div>
+  <section id="people">
+    <div class="container">
+      <div class="people-disclaimer">
+        This page will evolve as our community grows.
+      </div>
+      <div class="section-header">
+        <div class="section-kicker">People</div>
+        <h2 class="section-title">Our Community</h2>
+        <p class="section-subtitle">
+          Meet the faculty, postdoctoral researchers, and students of CS AI4H.
+        </p>
+      </div>
 
-    <div class="people-group">
-      <div class="people-group-title">Leadership</div>
-      <div class="people-list">
-        <div class="person-card">
-          <div class="person-photo-wrapper">
-            <img
-              class="person-photo"
-              src="img/vladimir.png"
-              alt="Portrait of Vladimir Filkov"
-            />
-          </div>
-          <div class="person-meta">
-            <div class="person-name">
-              <a href="https://www.cs.ucdavis.edu/~filkov/" target="_blank">Vladimir Filkov</a>
-            </div>
-            <div class="person-role">Director</div>
-            <p class="person-description">
-              Vladimir Filkov serves as Director of CS AI4H. He is a Professor of Computer Science at UC Davis and directs the DECAL and AI for Health labs, applying AI, data science, and network science to software, biological, and medical data.
-            </p>
-          </div>
-        </div>
+      <!-- LEADERSHIP -->
+      <div class="people-group">
+        <div class="people-group-title">Leadership</div>
+        <div class="people-list">
 
-        <div class="person-card">
-          <div class="person-photo-wrapper">
-            <img
-              class="person-photo"
-              src="img/dipak.jpg"
-              alt="Portrait placeholder for Dipak Ghosal"
-            />
-          </div>
-          <div class="person-meta">
-            <div class="person-name">
-              <a
-                href=""
-                target="_blank"
-              >
-                Dipak Ghosal
-              </a>
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/vladimir.png" alt="Portrait of Vladimir Filkov" />
             </div>
-            <div class="person-role">Co-director</div>
-            <p class="person-description">
-              Dipak Ghosal, PhD, serves as Co-director of CS AI4H. He is the Chair of the CS Department at UC Davis.
-            </p>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://www.cs.ucdavis.edu/~filkov/" target="_blank">Vladimir Filkov</a>
+              </div>
+              <div class="person-role">Director</div>
+              <p class="person-description">
+                Vladimir Filkov serves as Director of AI4HC. He is a Professor of Computer Science at UC Davis and directs the DECAL and AI for Health labs, applying AI, data science, and network science to software, biological, and medical data.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div class="person-card">
-          <div class="person-photo-wrapper">
-            <img
-              class="person-photo"
-              src="img/roger.jpg"
-              alt="Portrait of Roger Eric Goldman"
-            />
-          </div>
-          <div class="person-meta">
-            <div class="person-name">
-              <a
-                href="https://health.ucdavis.edu/vascular/team/42868/roger-goldman-vascular-and-interventional-radiology-sacramento"
-                target="_blank"
-              >
-                Roger Eric Goldman
-              </a>
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/dipak.jpg" alt="Portrait of Dipak Ghosal" />
             </div>
-            <div class="person-role">Affiliate</div>
-            <p class="person-description">
-              Roger Eric Goldman, M.D., Ph.D., is a CS AI4H affiliate. He is an Assistant Professor of Radiology at UC Davis Health specializing in vascular and interventional radiology and advancing minimally invasive, image-guided procedures and new interventional technologies.
-            </p>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="" target="_blank">Dipak Ghosal</a>
+              </div>
+              <div class="person-role">Co-director</div>
+              <p class="person-description">
+                Dipak Ghosal, PhD, serves as Co-director of CS AI4H. He is the Chair of the CS Department at UC Davis.
+              </p>
+            </div>
           </div>
+
         </div>
       </div>
-    </div>
 
+      <!-- POSTDOCS -->
+      <div class="people-group">
+        <div class="people-group-title">Postdocs</div>
+        <div class="people-list">
 
-    <div class="people-group">
-      <div class="people-group-title">Postdocs</div>
-      <div class="people-list">
-        <div class="person-card">
-          <div class="person-photo-wrapper">
-            <img
-              class="person-photo"
-              src="img/apollo.png"
-              alt="Portrait of Dr. Xiaoguang Zhu (Apollo)"
-            />
-          </div>
-          <div class="person-meta">
-            <div class="person-name">
-              <a href="https://library.ucdavis.edu/person/xiaoguang-zhu/" target="_blank">
-                Dr. Xiaoguang Zhu
-              </a>
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/apollo.png" alt="Portrait of Dr. Xiaoguang Zhu (Apollo)" />
             </div>
-            <div class="person-role">Postdoc</div>
-            <p class="person-description">
-              Xiaoguang (Apollo) Zhu is a DataLab Postdoctoral Scholar at UC Davis, working at the interface of data science, machine learning, and domain science. His recent work includes methods for modeling complex multimodal and health data, with applications in imaging and AI for scientific discovery.
-            </p>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://library.ucdavis.edu/person/xiaoguang-zhu/" target="_blank">Dr. Xiaoguang Zhu</a>
+              </div>
+              <div class="person-role">Postdoc</div>
+              <p class="person-description">
+                Xiaoguang (Apollo) Zhu is a DataLab Postdoctoral Scholar at UC Davis, working at the interface of data science, machine learning, and domain science. His recent work includes methods for modeling complex multimodal and health data, with applications in imaging and AI for scientific discovery.
+              </p>
+            </div>
           </div>
+
         </div>
       </div>
-    </div>
 
-    <div class="people-group">
-      <div class="people-group-title">Students</div>
-      <div class="people-list">
-        <div class="person-card">
-          <div class="person-photo-wrapper">
-            <img
-              class="person-photo"
-              src="img/nafiz.jpg"
-              alt="Portrait of Nafiz Imtiaz Khan"
-            />
-          </div>
-          <div class="person-meta">
-            <div class="person-name">
-              <a href="https://nafiz43.github.io/portfolio/" target="_blank">
-                Nafiz Imtiaz Khan
-              </a>
-            </div>
-            <div class="person-role">Student</div>
-            <p class="person-description">
-              Nafiz Imtiaz Khan is a Ph.D. student in Computer Science at UC Davis and a member of the DECAL lab. His research focuses on applying large language models and machine learning to software engineering and health informatics, with an emphasis on scalable, retrieval-augmented AI systems.
-            </p>
-          </div>
-        </div>
+      <!-- AFFILIATED FACULTY -->
+      <div class="people-group">
+        <div class="people-group-title">Affiliated Faculty</div>
+        <div class="people-list">
 
-        <div class="person-card">
-          <div class="person-photo-wrapper">
-            <img
-              class="person-photo"
-              src="img/saisha.jpg"
-              alt="Portrait of Saisha Shetty"
-            />
-          </div>
-          <div class="person-meta">
-            <div class="person-name">
-              <a href="https://saishashetty.com/" target="_blank">Saisha Shetty</a>
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/xin_liu_0.jpg" alt="Portrait of Xin Liu" />
             </div>
-            <div class="person-role">Student</div>
-            <p class="person-description">
-              Saisha Shetty is an M.S. student in Computer Science at UC Davis and a Graduate Student Researcher working on annotating radiology clinical notes with large language models. She is broadly interested in AI for health, deep learning, and building dependable ML systems.
-            </p>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://xinliu.engineering.ucdavis.edu/" target="_blank">Xin Liu</a>
+              </div>
+              <div class="person-role">Professor of Computer Science, UC Davis</div>
+              <p class="person-description">
+                Xin Liu is a Professor of Computer Science and an IEEE Fellow at UC Davis. Her research spans machine learning algorithm development and applications in human and animal healthcare, food systems, and communication networks, including data-driven networking and IoT systems.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div class="person-card">
-          <div class="person-photo-wrapper">
-            <img
-              class="person-photo"
-              src="img/raiyan.jpeg"
-              alt="Portrait of Raiyan Jahangir"
-            />
-          </div>
-          <div class="person-meta">
-            <div class="person-name">
-              <a
-                href="https://scholar.google.com/citations?user=iTXzIxIAAAAJ&hl=en"
-                target="_blank"
-              >
-                Raiyan Jahangir
-              </a>
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/sam.jpg" alt="Portrait of Sam King" />
             </div>
-            <div class="person-role">Student</div>
-            <p class="person-description">
-              Raiyan Jahangir is a Ph.D. student in Computer Science at UC Davis whose research lies at the intersection of artificial intelligence and health. His work includes machine-learning methods for cardiovascular risk prediction, medical imaging, and accessible assistive technologies.
-            </p>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://bob.cs.ucdavis.edu/" target="_blank">Sam King</a>
+              </div>
+              <div class="person-role">Associate Professor of Computer Science, UC Davis; Director, CITRIS at UC Davis</div>
+              <p class="person-description">
+                Sam King is an Associate Professor of Computer Science and Director of CITRIS at UC Davis. His research focuses on novel software, hardware, and AI for managing Type 1 Diabetes, and he has a track record of translating academic research into high-impact commercial solutions, including security architecture for Google Chrome and Mozilla Firefox.
+              </p>
+            </div>
           </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/davidson.jpg" alt="Portrait of Ian Davidson" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://faculty.engineering.ucdavis.edu/davidson/" target="_blank">Ian Davidson</a>
+              </div>
+              <div class="person-role">Professor of Computer Science, UC Davis</div>
+              <p class="person-description">
+                Ian Davidson is a Professor of Computer Science at UC Davis whose research centers on machine learning, data mining, and AI fairness. He develops algorithms that embed fairness, explainability, and accountability into AI systems, with applications including neuroimaging analysis for clinical decision support.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/dongyu.jpg" alt="Portrait of Dongyu Liu" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://cs.ucdavis.edu/directory/dongyu-liu" target="_blank">Dongyu Liu</a>
+              </div>
+              <div class="person-role">Assistant Professor of Computer Science, UC Davis</div>
+              <p class="person-description">
+                Dongyu Liu is an Assistant Professor of Computer Science at UC Davis. His research group VIA works at the intersection of Machine Learning, Visualization, and Human-Computer Interaction, building human-AI teaming systems for data-driven decision-making in critical domains including sustainability and healthcare.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
 
-  </div>
-</section>
+      <!-- AFFILIATED MDs -->
+      <div class="people-group">
+        <div class="people-group-title">Affiliated MDs</div>
+        <div class="people-list">
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/roger.jpg" alt="Portrait of Roger Eric Goldman" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://health.ucdavis.edu/vascular/team/42868/roger-goldman-vascular-and-interventional-radiology-sacramento" target="_blank">Roger Eric Goldman, M.D., Ph.D.</a>
+              </div>
+              <div class="person-role">Assistant Professor of Radiology, UC Davis Health</div>
+              <p class="person-description">
+                Roger Eric Goldman is an Assistant Professor of Radiology at UC Davis Health specializing in vascular and interventional radiology. He advances minimally invasive, image-guided procedures and new interventional technologies, and serves as a bridge between clinical practice and AI research within CS AI4H.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/david.jpg" alt="Portrait of David A. Liem" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://physicians.ucdavis.edu/details/73579/david-liem-cardiovascular_medicine-sacramento" target="_blank">David A. Liem, M.D., Ph.D.</a>
+              </div>
+              <div class="person-role">Physician-Scientist, Cardiovascular Medicine, UC Davis Health</div>
+              <p class="person-description">
+                David Liem is a physician-scientist in cardiovascular medicine at UC Davis Health with expertise in ischemic heart disease and cardiomyopathies. His research combines computational biology, text mining, and multi-omics data science approaches, with a current focus on how social determinants of health affect heart failure outcomes.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/martin.jpg" alt="Portrait of Martin Cadeiras" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://health.ucdavis.edu/internal-medicine/team/32316/martin-cadeiras-cardiology-cardiovascular-medicine-heart-failure-heart-transplantation-mechanical-circulatory-support-pulmonary-hypertension-sacramento/" target="_blank">Martin Cadeiras, M.D.</a>
+              </div>
+              <div class="person-role">Medical Director, Advanced Heart Failure &amp; Heart Transplantation, UC Davis Health</div>
+              <p class="person-description">
+                Martin Cadeiras is a heart failure and heart transplant cardiologist at UC Davis Health. His Complex Care Laboratory applies advanced computational, molecular, and sensor technologies to understand advanced heart diseases and build AI-driven decision-support systems for personalized clinical care and precision medicine.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/uma.jpg" alt="Portrait of Uma N. Srivatsa" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://health.ucdavis.edu/medical-center/team/1243/uma-srivatsa---cardiac-electrophysiology---cardiology---cardiovascular-medicine---internal-medicine-sacramento/" target="_blank">Uma N. Srivatsa, M.B.B.S., MAS</a>
+              </div>
+              <div class="person-role">Professor of Medicine &amp; Director of Arrhythmias, UC Davis Health</div>
+              <p class="person-description">
+                Uma Srivatsa is a cardiac electrophysiologist and Professor of Medicine at UC Davis Health, serving as Director of Arrhythmias. She specializes in complex arrhythmia management including atrial fibrillation and ventricular tachycardia, and actively engages in innovative AI and machine learning projects to drive innovation in healthcare research.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/nipavan.jpg" alt="Portrait of Nipavan Chiamvimonvat" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://phoenixmed.arizona.edu/bms/nipavan-chiamvimonvat" target="_blank">Nippavan Chiamvimonvat, M.D.</a>
+              </div>
+              <div class="person-role">Professor &amp; Chair, Department of Basic Medical Sciences, University of Arizona College of Medicine – Phoenix</div>
+              <p class="person-description">
+                Nipavan Chiamvimonvat is a physician-scientist and Chair of Basic Medical Sciences at the University of Arizona College of Medicine – Phoenix. A former Roger Tatarian Endowed Professor at UC Davis, her research focuses on cellular and molecular mechanisms of cardiac arrhythmias and sudden cardiac death in heart failure, with her team identifying novel ion channel targets for atrial fibrillation.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STUDENTS -->
+      <div class="people-group">
+        <div class="people-group-title">Students</div>
+        <div class="people-list">
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/nafiz.jpg" alt="Portrait of Nafiz Imtiaz Khan" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://nafiz43.github.io/portfolio/" target="_blank">Nafiz Imtiaz Khan</a>
+              </div>
+              <div class="person-role">Ph.D. Candidate | Associate Lab Manager, AI for Health Research</div>
+              <p class="person-description">
+                Nafiz Imtiaz Khan is a Ph.D. student in Computer Science at UC Davis and a member of the DECAL lab. His research focuses on applying large language models and machine learning to software engineering and health informatics, with an emphasis on scalable, retrieval-augmented AI systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/saisha.jpg" alt="Portrait of Saisha Shetty" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://saishashetty.com/" target="_blank">Saisha Shetty</a>
+              </div>
+              <div class="person-role">M.S. Student</div>
+              <p class="person-description">
+                Saisha Shetty is an M.S. student in Computer Science at UC Davis and a Graduate Student Researcher working on annotating radiology clinical notes with large language models. She is broadly interested in AI for health, deep learning, and building dependable ML systems.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <img class="person-photo" src="img/raiyan.jpeg" alt="Portrait of Raiyan Jahangir" />
+            </div>
+            <div class="person-meta">
+              <div class="person-name">
+                <a href="https://scholar.google.com/citations?user=iTXzIxIAAAAJ&hl=en" target="_blank">Raiyan Jahangir</a>
+              </div>
+              <div class="person-role">Ph.D. Student</div>
+              <p class="person-description">
+                Raiyan Jahangir is a Ph.D. student in Computer Science at UC Davis whose research lies at the intersection of artificial intelligence and health. His work includes machine-learning methods for cardiovascular risk prediction, medical imaging, and accessible assistive technologies.
+              </p>
+            </div>
+          </div>
+
+          <div class="person-card">
+            <div class="person-photo-wrapper">
+              <div class="person-avatar-placeholder">SD</div>
+            </div>
+            <div class="person-meta">
+              <div class="person-name">Sarika Dinesh</div>
+              <div class="person-role">M.S. Student</div>
+              <p class="person-description">
+                Sarika Dinesh is a student in Computer Science at UC Davis working on AI for health research. Her work contributes to the CS AI4H initiative's mission of applying machine learning and data science methods to healthcare problems.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
 
 
   <!-- Contact Section -->
@@ -1401,52 +2024,17 @@
         </p>
       </div>
 
-      <!-- <div class="contact-grid">
-        <div class="card">
-          <h3>Interest Form</h3>
-          <form>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type
-              <input type="email" id="email" name="email" placeholder="you@ucdavis.edu" />
-            </div>
-            <div class="form-group">
-              <label for="role">Role / Affiliation</label>
-              <select id="role" name="role">
-                <option value="">Select an option</option>
-                <option>Faculty</option>
-                <option>Graduate student</option>
-                <option>Undergraduate student</option>
-                <option>Clinician / staff</option>
-                <option>Community partner</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">How would you like to engage?</label>
-              <textarea id="message" name="message" placeholder="Tell us about your interests, projects, or questions."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Interest →</button>
-          </form>
-        </div> -->
-
         <div class="card">
           <h3>Stay Connected</h3>
           <p style="margin-bottom: 20px;">
-            Replace these placeholders with your official contact information and communication channels (e.g., listserv, website, or help form).
           </p>
           <ul>
-            <li>Email (placeholder): <strong>ai-for-health@ucdavis.edu</strong></li>
+            <li>Email: <strong>ai-for-health@ucdavis.edu</strong></li>
             <li>Join our mailing list for seminar and event announcements across UC Davis and UC Davis Health.</li>
-            <li>Faculty & staff: reach out to discuss emerging projects, grant ideas, or educational initiatives.</li>
+            <li>Faculty &amp; staff: reach out to discuss emerging projects, grant ideas, or educational initiatives.</li>
             <li>Community partners: contact us to explore collaborations and co-designed AI tools.</li>
           </ul>
         </div>
-      </div>
     </div>
   </section>
 
@@ -1469,7 +2057,8 @@
             <a href="#about">About the initiative</a>
             <a href="#resources">Resources</a>
             <a href="#research">Research themes</a>
-            <a href="#news">News & events</a>
+            <a href="#projects">Projects</a>
+            <a href="#news">News &amp; events</a>
             <a href="#people">People</a>
             <a href="#contact">Get involved</a>
           </div>
@@ -1491,10 +2080,10 @@
 
       <div class="footer-bottom">
         <div>
-          © <span id="year"></span> The Regents of the University of California, Davis campus. All rights reserved.
+          &copy; <span id="year"></span> The Regents of the University of California, Davis campus. All rights reserved.
         </div>
         <div class="footer-bottom-links">
-          <a href="https://www.ucdavis.edu/privacy-and-accessibility" target="_blank">Privacy & Accessibility</a>
+          <a href="https://www.ucdavis.edu/privacy-and-accessibility" target="_blank">Privacy &amp; Accessibility</a>
           <a href="https://diversity.ucdavis.edu/principles-community" target="_blank">Principles of Community</a>
           <a href="https://www.universityofcalifornia.edu/" target="_blank">University of California</a>
         </div>
@@ -1503,8 +2092,25 @@
   </footer>
 
   <script>
-    // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    function toggleAccordion(btn) {
+      const body = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+
+      // Close all siblings in the same group
+      const group = btn.closest('.accordion-group');
+      group.querySelectorAll('.accordion-trigger').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+      });
+
+      // Toggle clicked one open if it wasn't already
+      if (!isOpen) {
+        btn.classList.add('open');
+        body.classList.add('open');
+      }
+    }
   </script>
 </body>
 </html>
