@@ -966,6 +966,12 @@
       line-height: 1.75;
       background: #f8f9fb;
       border-top: 1px solid var(--border);
+      animation: slideDown 0.22s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .accordion-body.open {
@@ -1568,42 +1574,76 @@
         <div class="section-kicker">Projects</div>
         <h2 class="section-title">Active Research Projects</h2>
         <p class="section-subtitle">
-          Ongoing student and trainee projects at the intersection of AI and health, developed within the CS AI4H community.
+          Ongoing student and trainee projects at the intersection of AI and health, developed within the CS AI4H community. Click any project to expand.
         </p>
       </div>
 
-      <div class="project-list">
+      <div class="accordion-group" style="border-radius: 10px; overflow: hidden;">
 
-        <div class="project-card">
-          <div class="project-title">RadAnnotate: Large Language Models for Efficient and Reliable Radiology Report Annotation</div>
-          <div class="project-lead">Project Lead: <span>Saisha Shetty</span></div>
-          <p class="project-description">
-            RadAnnotate is an AI-driven framework for annotating radiology reports using large language models trained on limited clinical data. The project combines entity-specific models, synthetic data generation, and confidence-based selective automation to improve annotation reliability while reducing expert review effort in healthcare workflows.
-          </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">AngioVision: Multimodal AI for Angiographic Report Generation</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Nafiz Imtiaz Khan</span></strong></p>
+            <p>AngioVision is a multimodal deep learning pipeline that combines angiographic image sequences with clinical metadata to automatically generate structured radiology reports for interventional procedures. The system integrates a PooledCLIP architecture with temporal encoding and cross-attention mechanisms, enabling scalable, privacy-preserving report generation to support radiologists in high-volume vascular and interventional settings.</p>
+          </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-title">Mammo-Find: An LLM-based Multi-channel Tool for Recommending Public Mammogram Datasets</div>
-          <div class="project-lead">Project Lead: <span>Raiyan Jahangir</span></div>
-          <p class="project-description">
-            Mammo-Find is an LLM- and RAG-based multichannel tool that helps researchers discover and compare public mammography datasets through both conversational text responses and visual knowledge-graph outputs. By aggregating information from 22 mammography datasets, the system recommends suitable datasets for downstream breast cancer AI tasks, reducing the time and effort required to identify appropriate data sources.
-          </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">RadAnnotate: Large Language Models for Efficient and Reliable Radiology Report Annotation</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Saisha Shetty</span></strong></p>
+            <p>RadAnnotate is an AI-driven framework for annotating radiology reports using large language models trained on limited clinical data. The project combines entity-specific models, synthetic data generation, and confidence-based selective automation to improve annotation reliability while reducing expert review effort in healthcare workflows.</p>
+          </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-title">MammoWise: Multi-Model Local RAG Pipeline for Mammography Report Generation</div>
-          <div class="project-lead">Project Lead: <span>Raiyan Jahangir</span></div>
-          <p class="project-description">
-            MammoWise is a local, multi-model pipeline that uses open-source VLMs to generate structured mammography reports and perform related classification tasks, including BI-RADS, breast density, mass, calcification, and asymmetry prediction. The system unifies prompting, multimodal RAG, and QLoRA fine-tuning across datasets such as VinDr-Mammo and DMID, providing a reproducible and privacy-preserving framework for evaluating practical mammogram report generation workflows.
-          </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">Mammo-Find: An LLM-based Multi-channel Tool for Recommending Public Mammogram Datasets</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Raiyan Jahangir</span></strong></p>
+            <p>Mammo-Find is an LLM- and RAG-based multichannel tool that helps researchers discover and compare public mammography datasets through both conversational text responses and visual knowledge-graph outputs. By aggregating information from 22 mammography datasets, the system recommends suitable datasets for downstream breast cancer AI tasks, reducing the time and effort required to identify appropriate data sources.</p>
+          </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-title">AI-Driven Real-Time Radioguided Imaging for Precision Cancer Surgery</div>
-          <div class="project-lead">Project Lead: <span>Sarika Dinesh</span></div>
-          <p class="project-description">
-            This project focuses on developing an innovative radio-guided surgical probe for cancer detection by integrating artificial intelligence with advanced medical imaging techniques. The research aims to reconstruct real-time images of radiotracer distributions near the probe, enabling more accurate tumor localization and improving decision-making during surgical procedures.
-          </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">MammoWise: Multi-Model Local RAG Pipeline for Mammography Report Generation</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Raiyan Jahangir</span></strong></p>
+            <p>MammoWise is a local, multi-model pipeline that uses open-source VLMs to generate structured mammography reports and perform related classification tasks, including BI-RADS, breast density, mass, calcification, and asymmetry prediction. The system unifies prompting, multimodal RAG, and QLoRA fine-tuning across datasets such as VinDr-Mammo and DMID, providing a reproducible and privacy-preserving framework for evaluating practical mammogram report generation workflows.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">AfibNet: A Multimodal Missingness-Aware Machine Learning Pipeline for Atrial Fibrillation Recurrence and Type Prediction</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Raiyan Jahangir</span></strong></p>
+            <p>AfibNet is a nested cross-validation pipeline that integrates clinical, electrogram (EGM), and metabolomic data modalities to predict post-ablation atrial fibrillation recurrence and AF type classification. By systematically evaluating combinations of imputation strategies, threshold-based feature selection, and 13 classifier architectures, with SHAP-driven interpretability, the system identifies robust biomarker signatures across single- and fused-data sources to support personalized AF ablation outcomes research.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <span class="accordion-label">AI-Driven Real-Time Radioguided Imaging for Precision Cancer Surgery</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p style="margin-bottom: 10px;"><strong style="color: var(--ucd-gold); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Project Lead: <span style="color: var(--text-muted); font-weight: 600; text-transform: none; letter-spacing: 0;">Sarika Dinesh</span></strong></p>
+            <p>This project focuses on developing an innovative radio-guided surgical probe for cancer detection by integrating artificial intelligence with advanced medical imaging techniques. The research aims to reconstruct real-time images of radiotracer distributions near the probe, enabling more accurate tumor localization and improving decision-making during surgical procedures.</p>
+          </div>
         </div>
 
       </div>
