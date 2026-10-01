@@ -137,7 +137,6 @@
     /* Organizing committee */
     .committee { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
     .member { display: flex; gap: 14px; align-items: center; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--gold); border-radius: 10px; box-shadow: var(--shadow); }
-    .member.lead { grid-column: 1 / -1; max-width: 520px; }
     .avatar { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #fff; font-weight: 700; font-size: 18px; object-fit: cover; }
     .member-role { font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; font-weight: 700; color: #8c6800; }
     .member-name { font-size: 16.5px; font-weight: 700; color: var(--accent); }
@@ -174,12 +173,20 @@
       <h2 class="section-title">Organizing Committee</h2>
       <p class="section-sub">The people bringing the inaugural symposium together at Aggie Square.</p>
       <div class="committee">
-        <div class="member lead">
-          <img class="avatar" src="img/vladimir.png" alt="Portrait of Vladimir Filkov" />
+        <div class="member">
+          <div class="avatar" aria-hidden="true">AS</div>
           <div>
-            <div class="member-role">General Chair</div>
-            <div class="member-name"><a href="https://www.cs.ucdavis.edu/~filkov/" target="_blank" rel="noopener">Vladimir Filkov</a></div>
-            <div class="member-affil">Professor of Computer Science; Director, CS AI for Health Initiative</div>
+            <div class="member-role">Hospitality &amp; Catering Chair</div>
+            <div class="member-name">Amritanand Sudheerkumar</div>
+            <div class="member-affil">Computer Science, UC Davis</div>
+          </div>
+        </div>
+        <div class="member">
+          <div class="avatar" aria-hidden="true">NK</div>
+          <div>
+            <div class="member-role">Web &amp; Communications Chair</div>
+            <div class="member-name">Nafiz Imtiaz Khan</div>
+            <div class="member-affil">Computer Science, UC Davis</div>
           </div>
         </div>
         <div class="member">
@@ -199,19 +206,11 @@
           </div>
         </div>
         <div class="member">
-          <div class="avatar" aria-hidden="true">AS</div>
+          <img class="avatar" src="img/vladimir.png" alt="Portrait of Vladimir Filkov" />
           <div>
-            <div class="member-role">Hospitality &amp; Catering Chair</div>
-            <div class="member-name">Amritanand Sudheerkumar</div>
-            <div class="member-affil">Computer Science, UC Davis</div>
-          </div>
-        </div>
-        <div class="member">
-          <div class="avatar" aria-hidden="true">NK</div>
-          <div>
-            <div class="member-role">Web &amp; Communications Chair</div>
-            <div class="member-name">Nafiz Imtiaz Khan</div>
-            <div class="member-affil">Computer Science, UC Davis</div>
+            <div class="member-role">General Chair</div>
+            <div class="member-name"><a href="https://www.cs.ucdavis.edu/~filkov/" target="_blank" rel="noopener">Vladimir Filkov</a></div>
+            <div class="member-affil">Professor of Computer Science; Director, CS AI for Health Initiative</div>
           </div>
         </div>
       </div>
